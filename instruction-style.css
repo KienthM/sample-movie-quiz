@@ -1,0 +1,132 @@
+body {
+  background-image: url(images/bg-image.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#menu {
+  background-color: #FFC804;
+  width: 700px; /* Fixed width */
+  height: 900px; /* Fixed height */
+  padding: 20px;
+  box-sizing: border-box;
+  position: absolute; /* Position it on the left side */
+  left: 0;
+  top: 0;
+}
+
+#logo {
+  height: auto;
+  margin-left: 210px;
+  margin-top: 100px;
+  margin-right: 185px;
+  margin-bottom: 30px;
+  max-width: 40%; /* Adjust to fit inside the container */
+}
+
+#sub-h {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
+  margin-top: 0px;
+  text-align: center;
+  color: #691313;
+  font-weight: 600;
+}
+#sub-h2 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18px;
+  margin-top: 0px;
+  text-align: center;
+  color: #691313;
+  font-weight: 600;
+}
+
+#intro {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 17px;
+  margin-top: 50px;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-bottom: 20px;
+  text-align: justify;
+  color: #691313;
+  font-weight: lighter;
+}
+
+ul {
+  margin: 60px;
+  margin-top: 20px;
+  margin-right: 80px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 17px;
+  text-align: justify;
+  color: #691313;
+  font-weight: lighter;
+}
+li {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#start-btn {
+  text-align: center;
+}
+
+#inst-btn {
+  text-align: center;
+}
+
+#btn1, #btn2 {
+  width: 300px;
+  height: 70px;
+  margin: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+#btn1 { 
+  background-color: #691313;
+  color: #FFFFFF;
+  border: none;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+
+#btn1:hover {
+  cursor: pointer;
+  width: 320px;
+  height: 80px;
+  background-color: #912323;
+  color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  #menu {
+    width: 90%; /* Adjust the width to fit smaller screens */
+    height: auto; /* Allow height to adjust automatically */
+  }
+
+  #btn1, #btn2 {
+    width: 100%; /* Make buttons full width for smaller screens */
+    max-width: none; /* Remove max-width constraint */
+  }
+}
+
+@media (max-width: 500px) {
+  #logo {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  #sub-h {
+    font-size: 30px;
+  }
+}

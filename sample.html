@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Quiz</title>
+    <style>body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  }
+  
+  .quiz-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #quiz {
+      margin-bottom: 20px;
+  }
+  
+  .question {
+      margin-bottom: 10px;
+  }
+  
+  #results {
+      margin-top: 20px;
+      font-size: 1.2em;
+  }</style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Movie Quiz - Easy Level</h1>
+        <div id="quiz"></div>
+        <button id="next">Next</button>
+        <button id="retry" style="display: none;">Retry</button>
+        <div id="results"></div>
+    </div>
+    <script>document.addEventListener('DOMContentLoaded', () => {
+      const questions = [
+          { question: "Who directed 'Pulp Fiction'?", answer: "Quentin Tarantino" },
+          { question: "Who starred as the main character in 'Titanic'?", answer: "Leonardo DiCaprio" },
+          { question: "What is the title of the first 'Harry Potter' movie?", answer: "Harry Potter and the Philosopher's Stone" },
+          { question: "Which movie features the song 'My Heart Will Go On'?", answer: "Titanic" },
+          { question: "Who played 'Forrest Gump'?", answer: "Tom Hanks" },
+          // Add more questions here
+      ];
+  
+      let currentQuestionIndex = 0;
+      let score = 0;
+      const passingScore = 18;
+  
+      // Shuffle questions
+      function shuffle(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [array[i], array[j]] = [array[j], array[i]];
+          }
+      }
+  
+      // Display current question
+      function showQuestion() {
+          const quizContainer = document.getElementById('quiz');
+          quizContainer.innerHTML = '';
+          const question = questions[currentQuestionIndex];
+  
+          const questionElement = document.createElement('div');
+          questionElement.classList.add('question');
+          questionElement.innerHTML = `
+              <p>${question.question}</p>
+              <input type="text" id="answer" class="answer" />
+              <p class="feedback" id="feedback"></p>
+          `;
+          quizContainer.appendChild(questionElement);
+      }
+  
+      // Handle next question
+      function handleNextQuestion() {
+          const answerInput = document.getElementById('answer');
+          const feedback = document.getElementById('feedback');
+  
+          if (answerInput.value.trim().toLowerCase() === questions[currentQuestionIndex].answer.toLowerCase()) {
+              score++;
+              feedback.innerText = 'Correct!';
+              feedback.style.color = 'green';
+          } else {
+              feedback.innerText = `Wrong! The correct answer is: ${questions[currentQuestionIndex].answer}`;
+              feedback.style.color = 'red';
+          }
+  
+          currentQuestionIndex++;
+  
+          if (currentQuestionIndex < questions.length) {
+              setTimeout(showQuestion, 1000); // Show next question after 1 second
+          } else {
+              showResults();
+          }
+      }
+  
+      // Show final results
+      function showResults() {
+          const quizContainer = document.getElementById('quiz');
+          quizContainer.innerHTML = '';
+          const resultsContainer = document.getElementById('results');
+          const nextButton = document.getElementById('next');
+          const retryButton = document.getElementById('retry');
+  
+          resultsContainer.innerText = `You scored ${score} out of ${questions.length}`;
+  
+          if (score >= passingScore) {
+              resultsContainer.innerText += "\nCongratulations! You passed and can proceed to the medium level.";
+              // Implement logic to proceed to the medium level
+          } else {
+              resultsContainer.innerText += "\nSorry, you did not pass. Please try again.";
+              nextButton.style.display = 'none';
+              retryButton.style.display = 'block';
+          }
+      }
+  
+      // Retry quiz
+      function retryQuiz() {
+          currentQuestionIndex = 0;
+          score = 0;
+          shuffle(questions);
+          showQuestion();
+          document.getElementById('results').innerText = '';
+          document.getElementById('next').style.display = 'block';
+          document.getElementById('retry').style.display = 'none';
+      }
+  
+      document.getElementById('next').addEventListener('click', handleNextQuestion);
+      document.getElementById('retry').addEventListener('click', retryQuiz);
+  
+      shuffle(questions);
+      showQuestion();
+  });</script>
+</body>
+</html>
